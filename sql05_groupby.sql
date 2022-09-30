@@ -52,3 +52,23 @@ from emp
 group by deptno
 order by deptno;
 
+-- 아래의 모든 문제에서 소수점은 반올림해서 2자리까지 표시.
+select * from emp;
+-- Ex. 부서별 급여의 평균, 표준편차를 출력. 부서번호 오름차순 정렬.
+select round(avg(sal),2),round(stddev(sal),2)
+from emp
+group by deptno
+order by deptno;
+
+
+-- Ex. 직무별 직원수, 급여의 최댓값, 최솟값, 평균 검색.
+-- 직무 오름차순 정렬
+select count(job),max(sal), min(sal), round(avg(sal),2)
+from emp
+order by job;
+
+-- Ex. 부서별, 직무별 부서번호, 직무, 직원수, 급여 평균 검색
+-- 정렬 순서는 (1) 부서 번호 (2) 직책 오름차순
+select 
+
+-- Ex. 입사연도별 사원수 검색. (힌트) to_char(날짜, 포맷) 이용.
