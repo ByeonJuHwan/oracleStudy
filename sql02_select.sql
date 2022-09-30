@@ -62,4 +62,7 @@ select distinct job, deptno from emp;
 -- dinstint는 select 문장에서 한번만, 모든 컬럼 이름들보다 먼저 사용됨.
 
 -- 직원 테이블에서 중복되지 않는 부서번호, 직무를 검색. 부서번호의 오름차순 출력.
-select distinct deptno as "부서번호", job as "직무" from emp order by deptno;
+select distinct deptno as "부서번호", job as "직무" 
+from emp 
+order by deptno;
+
