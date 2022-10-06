@@ -31,6 +31,17 @@ select last_name
 from employees
 where to_char(hire_date,'YYYY')='2008';
 
+-- to_char(날짜, 포맷): date 타입을 포맷 형식의 문자열로 변환해서 리턴
+
+-- 2008년 = 2008/01/01 ~ 2008/12/31
+select last_name , hire_date
+from employees
+where hire_date between to_date('2008/01/01', 'YYYY/MM/DD')
+                and to_date('2008/12/31', 'YYYY/MM/DD');
+                
+-- to_date(문자열, 포맷) : 문자열을 date 타입으로 변환해서 리턴
+
+
 -- 7. 2008년에 입사한 직원들의 부서 이름과 부서별 인원수 검색.
 select d.department_name, count(*) as "사원수"
 from employees e
@@ -59,6 +70,24 @@ select department_id, round(avg(salary),1) as "급여평균"
 from employees 
 group by department_id
 having avg(salary) = (select max(avg(salary)) from employees group by department_id);
+
+select max(t.AVG_SAL)
+from ( select department_id, avg(salary) as AVG_SAL
+        from employees
+        group by department_id) t;
+        
+-- with-as-select 구문
+with t as(
+       select department_id, avg(salary) as AVG_SAL
+        from employees
+        group by department_id
+) 
+select department_id, round(AVG_SAL,1)
+from t
+where AVG_SAL = (
+    select max(AVG_SAL) from t    
+);
+
 
 -- 11. 사번, 직원이름, 국가이름, 급여 검색.
 select e.employee_id,e.first_name || ' ' || e.last_name as "직원이름",c.country_name,e.salary 
