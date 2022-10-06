@@ -87,7 +87,7 @@ from t
 where AVG_SAL = (
     select max(AVG_SAL) from t    
 );
-
+ 
 
 -- 11. 사번, 직원이름, 국가이름, 급여 검색.
 select e.employee_id,e.first_name || ' ' || e.last_name as "직원이름",c.country_name,e.salary 
